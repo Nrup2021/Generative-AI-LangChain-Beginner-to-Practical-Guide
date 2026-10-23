@@ -17,7 +17,7 @@
 <a id="about-this-guide"></a>
 ## 📚 About This Guide
 
-Welcome! This guide explains Generative AI, LangChain, and modern AI application design from the ground up. It is designed for beginners who want to understand not only what these technologies are, but also how they work, why they matter, and how to build practical AI products.
+Welcome! This guide explains Generative AI, LangChain, and modern AI application design from the ground up. It is designed for beginners who want to understand not only what these technologies are, but also why they matter in practical real-world systems.
 
 You do not need prior knowledge of AI or LLMs to begin.
 
@@ -474,7 +474,7 @@ LangGraph helps build stateful, graph-based agent workflows.
 
 ### MCP addition
 
-MCP (Model Context Protocol) is a standard way to connect AI agents to tools, datasets, and external systems. Instead of every tool being custom-coded for each model, MCP gives a common interface for tool discovery and execution. This makes agent-based systems easier to scale and easier to integrate into mobile or cross-platform products.
+MCP (Model Context Protocol) is a standard way to connect AI agents to tools, datasets, and external systems. Instead of every tool being custom-coded for each model, MCP gives a common interface for tool access and standardization.
 
 ---
 
@@ -572,7 +572,7 @@ LoRA and QLoRA are efficient fine-tuning methods that reduce adapter size and co
 # 🚀 Module 13: Real-World Project Ideas
 
 ### Why this matters
-Projects help you apply theory to practical results and build a solid portfolio. Real projects also teach you how AI systems are designed in the real world: not just model behavior, but data flows, tool integration, API design, system reliability, and user experience.
+Projects help you apply theory to practical results and build a solid portfolio. Real projects also teach you how AI systems are designed in the real world: not just model behavior, but data flows, system boundaries, and user experience.
 
 ### 1) AI Learning Assistant
 
@@ -587,17 +587,7 @@ Projects help you apply theory to practical results and build a solid portfolio.
 
 **Architecture:**
 
-```mermaid
-flowchart LR
-    A[Student] --> B[Web UI]
-    B --> C[Flask API]
-    C --> D[LangChain Chain]
-    D --> E[Vector DB]
-    D --> F[LLM]
-    E --> D
-    F --> G[Response]
-    G --> B
-```
+<img src="docs/diagrams/ai-learning-assistant.svg" alt="AI Learning Assistant architecture" width="100%">
 
 **Why this matters:** This project teaches the full flow of retrieval + prompting + LLM reasoning, which is one of the most common real-world AI patterns.
 
@@ -614,20 +604,7 @@ flowchart LR
 
 **Architecture:**
 
-```mermaid
-flowchart LR
-    A[PDF / Docs] --> B[Document Loader]
-    B --> C[Text Splitter]
-    C --> D[Embeddings]
-    D --> E[Vector DB]
-    F[User Question] --> G[Flask API]
-    G --> H[Retriever]
-    H --> E
-    E --> I[Relevant Chunks]
-    I --> J[LLM + Prompt]
-    J --> K[Grounded Answer]
-    K --> G
-```
+<img src="docs/diagrams/document-qa-assistant.svg" alt="Document Question-Answering Assistant architecture" width="100%">
 
 **Why this matters:** This is a classic real-world RAG use case used in legal, HR, policy, research, and enterprise knowledge bases.
 
@@ -644,20 +621,7 @@ flowchart LR
 
 **Architecture:**
 
-```mermaid
-flowchart LR
-    A[Customer] --> B[Support App]
-    B --> C[Flask API]
-    C --> D[Intent Classifier]
-    D --> E[Order DB / CRM]
-    D --> F[Policy Vector Store]
-    E --> G[Tool Results]
-    F --> H[Relevant Docs]
-    G --> I[LLM Agent]
-    H --> I
-    I --> J[Support Response]
-    J --> B
-```
+<img src="docs/diagrams/customer-support-assistant.svg" alt="AI Customer Support Assistant architecture" width="100%">
 
 **Why this matters:** This is one of the most common enterprise AI use cases because it reduces ticket resolution time and improves customer experience while still being grounded in company policies.
 
@@ -674,21 +638,9 @@ flowchart LR
 
 **Architecture:**
 
-```mermaid
-flowchart LR
-    A[Traveler] --> B[Travel App]
-    B --> C[Flask API]
-    C --> D[Prompt + Constraints]
-    D --> E[Weather API]
-    D --> F[Flight/API Tools]
-    E --> G[LangChain Agent]
-    F --> G
-    G --> H[LLM]
-    H --> I[3-Day Itinerary]
-    I --> B
-```
+<img src="docs/diagrams/travel-planner.svg" alt="AI Travel Planner architecture" width="100%">
 
-**Why this matters:** It demonstrates how tools, APIs, and prompt design work together in a real assistant. This is a perfect beginner-to-practical project because it is easy to understand and clearly maps to real product workflows.
+**Why this matters:** It demonstrates how tools, APIs, and prompt design work together in a real assistant. This is a perfect beginner-to-practical project because it is easy to understand and clearly maps to real-world AI workflows.
 
 ### 5) AI Mobile Application Backend
 
@@ -704,23 +656,13 @@ flowchart LR
 
 **Architecture:**
 
-```mermaid
-flowchart LR
-    A[Mobile App] --> B[REST API]
-    B --> C[Auth Layer]
-    C --> D[LangChain Pipeline]
-    D --> E[Session DB]
-    D --> F[LLM API]
-    F --> G[AI Response]
-    G --> B
-    B --> A
-```
+<img src="docs/diagrams/mobile-backend.svg" alt="AI Mobile Application Backend architecture" width="100%">
 
-**Why this matters:** This is the exact architecture used in real AI-powered mobile apps and SaaS products. It shows how AI is not just a notebook demo, but a backend service that can be integrated into production applications.
+**Why this matters:** This is the exact architecture used in real AI-powered mobile apps and SaaS products. It shows how AI is not just a notebook demo, but a backend service that can be integrated into production products.
 
 ### 6) MCP-Powered Cross-Platform AI Assistant
 
-**Use case:** A mobile app, web dashboard, and desktop client all need the same AI assistant experience. The assistant can answer questions, search documents, call business tools, and perform tasks from a single backend.
+**Use case:** A mobile app, web dashboard, and desktop client all need the same AI assistant experience. The assistant can answer questions, search documents, call business tools, and perform tasks from different interfaces.
 
 **Technology used and why:**
 - LangChain: prompts, agents, tool orchestration
@@ -734,24 +676,7 @@ flowchart LR
 
 **Architecture:**
 
-```mermaid
-flowchart TD
-    A[Mobile App] --> B[Shared Backend API]
-    C[Web App] --> B
-    D[Desktop App] --> B
-    B --> E[Auth + Session Layer]
-    E --> F[LangChain Agent]
-    F --> G[MCP Tool Layer]
-    F --> H[Vector DB]
-    G --> I[External Tools and Services]
-    H --> J[Relevant Context]
-    J --> F
-    F --> K[LLM]
-    K --> L[Unified Response]
-    L --> A
-    L --> C
-    L --> D
-```
+<img src="docs/diagrams/mcp-cross-platform-ai-assistant.svg" alt="MCP-powered cross-platform AI assistant architecture" width="100%">
 
 **How it works:**
 1. The user opens a mobile app or web app and asks a question.
@@ -762,7 +687,7 @@ flowchart TD
 6. The result is returned to the app in JSON or formatted UI data.
 7. The same backend can be reused by mobile, web, and desktop clients, making the system truly cross-platform.
 
-**Why this matters:** This is a realistic architecture for modern AI products: one core intelligence layer, many frontends, and tool access standardized through MCP. It mirrors how enterprise AI companies build assistant experiences across platforms without rewriting logic for every client.
+**Why this matters:** This is a realistic architecture for modern AI products: one core intelligence layer, many frontends, and tool access standardized through MCP. It mirrors how enterprise AI companies build scalable assistant systems.
 
 ### Practical takeaway
 
