@@ -576,7 +576,11 @@ An LLM does not simply look up a predefined answer for every question. It uses p
 *This README is intended for educational purposes and provides a simplified introduction to how modern LLMs work.*
 
 
-# 🤖 Generative AI & LangChain — A Beginner-to-Practical Learning Guide
+<p align="center"><img width="1148" height="292" alt="Screenshot 2026-10-23 at 10 46 40 AM" src="https://github.com/user-attachments/assets/a0b0416e-2f57-4bda-9bb1-de8723ac859a" /></p>
+
+
+<h1 align="center">🤖 Generative AI & LangChain</h1>
+
 
 <p align="center">
   <strong>Understand Generative AI, Prompt Engineering, LLMs, LangChain, RAG, AI Agents, and Flask Integration</strong>
@@ -612,27 +616,62 @@ We will progress from basic concepts to building AI-powered applications using P
 
 ---
 
+## 📑 Table of Contents
 
+| # | Module |
+|---|---|
+| 1 | [🧩 Module 1: Foundations of Artificial Intelligence](#module-1-foundations-of-artificial-intelligence) |
+| 2 | [✍️ Module 2: Prompt Engineering](#module-2-prompt-engineering) |
+| 3 | [🔗 Module 3: Introduction to LangChain](#module-3-introduction-to-langchain) |
+| 4 | [⚙️ Module 4: Chains and LangChain Expression Language (LCEL)](#module-4-chains-and-langchain-expression-language-lcel) |
+| 5 | [🧾 Module 5: Output Parsers and Structured Responses](#module-5-output-parsers-and-structured-responses) |
+| 6 | [💬 Module 6: Conversation History and Memory](#module-6-conversation-history-and-memory) |
+| 7 | [📄 Module 7: Documents, Embeddings, and Vector Databases](#module-7-documents-embeddings-and-vector-databases) |
+| 8 | [🔍 Module 8: Retrieval-Augmented Generation (RAG)](#module-8-retrieval-augmented-generation-rag) |
+| 9 | [🛠️ Module 9: Tools and AI Agents](#module-9-tools-and-ai-agents) |
+| 10 | [🧠 Module 10: AI Models and Model Selection](#module-10-ai-models-and-model-selection) |
+| 11 | [🌐 Module 11: Building a Generative AI Application with Python and Flask](#module-11-building-a-generative-ai-application-with-python-and-flask) |
+| 12 | [🧱 Module 12: Understanding Fine-Tuning and Model Adaptation](#module-12-understanding-fine-tuning-and-model-adaptation) |
+| 13 | [🚀 Module 13: Real-World Project Ideas](#module-13-real-world-project-ideas) |
+| 14 | [🧪 Module 14: Testing, Evaluation, and Responsible AI](#module-14-testing-evaluation-and-responsible-ai) |
+| 15 | [📖 Module 15: Important Terms to Remember](#module-15-important-terms-to-remember) |
+| 16 | [🎤 Module 16: Interview Preparation Questions](#module-16-interview-preparation-questions) |
+| 17 | [🏁 Final Summary](#final-summary) |
+
+---
 
 ## 🗺️ Learning Roadmap
 
 ```mermaid
 flowchart TD
-    A[ AI Fundamentals ] --> B[ Generative AI and LLMs ]
-    B --> C[ Prompt Engineering ]
-    C --> D[ LangChain Fundamentals ]
-    D --> E[ Prompts and Output Parsers ]
-    E --> F[ Chains and LCEL ]
-    F --> G[ Conversation History ]
-    G --> H[ Embeddings and Vector Stores ]
-    H --> I[ RAG Applications ]
-    I --> J[ Tools and AI Agents ]
-    J --> K[ Python and Flask Integration ]
-    K --> L[ Testing, Evaluation and Deployment ]
+    A["AI Fundamentals"] --> B["Generative AI and LLMs"]
+    B --> C["Prompt Engineering"]
+    C --> D["LangChain Fundamentals"]
+    D --> E["Prompts and Output Parsers"]
+    E --> F["Chains and LCEL"]
+    F --> G["Conversation History"]
+    G --> H["Embeddings and Vector Stores"]
+    H --> I["RAG Applications"]
+    I --> J["Tools and AI Agents"]
+    J --> K["Python and Flask Integration"]
+    K --> L["Testing, Evaluation and Deployment"]
 ```
 
-
 Think of this roadmap as learning to build a house: first, understand the materials; next, learn how the components fit together; finally, build a complete application.
+
+> [!TIP]
+> **The big picture** — how every piece in this guide fits together:
+
+```mermaid
+flowchart LR
+    U(["👤 User"]) --> API["🌐 Flask API"]
+    API --> P["✍️ Prompt Template"]
+    P --> M["🧠 LLM"]
+    R[("📚 Vector Store")] -- "retrieved context" --> P
+    M <--> T["🛠️ Tools / Agent"]
+    M --> O["🧾 Output Parser"]
+    O --> API --> U
+```
 
 ---
 
@@ -1161,6 +1200,11 @@ Each step has a clear responsibility, which makes the workflow easier to underst
 
 ## 18. What is LangChain Expression Language (LCEL)?
 
+```mermaid
+flowchart LR
+    A["📝 Input dict"] --> B["✍️ Prompt"] --> C["🧠 Model"] --> D["🧾 Parser"] --> E["✅ Output"]
+```
+
 LCEL is a declarative way to compose LangChain components into a runnable workflow.
 
 It uses the pipe operator `|` to connect components.
@@ -1681,6 +1725,20 @@ flowchart TD
 The exact behavior depends on the tools, model, instructions, and execution limits configured by the application.
 
 ## 38. What is the ReAct Pattern?
+
+```mermaid
+sequenceDiagram
+    participant U as 👤 User
+    participant M as 🧠 Model
+    participant A as ⚙️ App
+    participant T as 🛠️ Tool
+    U->>M: Question
+    M->>A: Thought + choose tool
+    A->>T: Validate & execute
+    T-->>A: Observation
+    A-->>M: Observation
+    M-->>U: Final answer
+```
 
 ReAct stands for Reasoning and Acting. It is an approach that combines model-driven problem solving with tool actions and observations.
 
@@ -2289,4 +2347,12 @@ Start with a prompt template and a model. Add structured output next. Then intro
 - [Chroma Documentation](https://docs.trychroma.com/)
 
 *Learning note: AI frameworks, package names, model capabilities, and APIs change frequently. Check the official documentation for the versions you use and verify examples in a working environment.*
+
+---
+
+<p align="center">
+  <b>⭐ If this guide helped you, give it a star and share it! ⭐</b><br/>
+  <sub>Made with ❤️ for learners everywhere</sub>
+</p>
+
 
