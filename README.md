@@ -1,583 +1,4 @@
-# 🤖 How Large Language Models (LLMs) Work
-
-A beginner-friendly guide to understanding how Large Language Models (LLMs) process human language, learn patterns, and generate AI-powered responses.
-
-## 📌 Introduction
-
-A **Large Language Model (LLM)** is an Artificial Intelligence (AI) model trained on large amounts of text to understand language patterns and generate human-like responses.
-
-LLMs power applications such as ChatGPT, AI chatbots, coding assistants, document summarizers, and intelligent virtual assistants.
-
-Unlike traditional software that relies entirely on explicitly programmed rules, LLMs learn patterns from training data and use those patterns to predict suitable responses.
-
-**Examples of LLM-powered applications:**
-- ChatGPT — conversational AI
-- GitHub Copilot — AI-assisted programming
-- AI customer support chatbots
-- Document summarization and question-answering systems
-- AI assistants integrated into mobile applications
-
----
-
-## 🔄 How Does an LLM Work?
-
-An LLM processes input text, converts it into numerical representations, analyzes contextual relationships, and generates a response one token at a time.
-
-### Overall Workflow
-
-```text
-User Input
-    |
-    v
-Tokenization
-(Split text into tokens)
-    |
-    v
-Token IDs and Embeddings
-(Convert tokens into numerical representations)
-    |
-    v
-Transformer Layers
-(Process information and context)
-    |
-    v
-Attention Mechanism
-(Understand relationships between tokens)
-    |
-    v
-Next-Token Prediction
-(Predict the next token)
-    |
-    v
-Response Generation
-(Repeat until the response is complete)
-```
-
-> **Important:** Attention and transformer processing work together. Attention is a component of transformer layers, not necessarily a separate stage that runs only after all transformer layers.
-
----
-
-## 1️⃣ Tokenization
-
-**What is tokenization?**
-
-Tokenization is the process of breaking text into smaller pieces called *tokens*.
-
-A token can represent:
-- A complete word
-- Part of a word
-- Punctuation
-- A number or other text element
-
-For example, the sentence:
-
-```text
-Hello, how are you?
-```
-
-Might be divided into tokens resembling:
-
-```text
-["Hello", ",", " how", " are", " you", "?"]
-```
-
-The exact token boundaries depend on the tokenizer used by the model.
-
-Each token is mapped to a numerical ID so the model can process it.
-
-**Why is tokenization important?**
-
-Computers process numerical data. Tokenization converts human-readable text into units that can be represented and processed mathematically.
-
-**Real-world example:**
-
-When you enter a question into ChatGPT, the input text is tokenized before being processed by the language model.
-
-**Explore:** [Tiktokenizer](https://tiktokenizer.vercel.app/) — visualize how text is divided into tokens.
-
----
-
-## 2️⃣ Embeddings
-
-**What are embeddings?**
-
-Embeddings are numerical vectors that represent tokens in a mathematical space.
-
-For example, a token might be represented internally by a vector containing hundreds or thousands of numerical values, depending on the model.
-
-A simplified illustration:
-
-```text
-"Cat"     → [0.21, 0.45, 0.78, ...]
-"Dog"     → [0.25, 0.41, 0.73, ...]
-"Airplane"→ [0.82, 0.12, 0.34, ...]
-```
-
-These numbers are illustrative, not actual model embeddings.
-
-During training, embeddings and other model parameters learn representations that help the model process linguistic patterns and relationships.
-
-**Why are embeddings important?**
-
-They provide a numerical representation that the neural network can transform and use to interpret contextual relationships.
-
-**Real-world example:**
-
-In a semantic search application, a user searches for "ways to improve sleep." An embedding-based search system may retrieve a document titled "Tips for better rest" because the meanings are related, even though the wording differs.
-
-**Explore:** [Nomic Atlas](https://atlas.nomic.ai/) — explore ways of visualizing embeddings and data relationships.
-
----
-
-## 3️⃣ Attention Mechanism
-
-**What is attention?**
-
-Attention helps a transformer determine which other tokens are relevant when processing a particular token.
-
-Consider this sentence:
-
-```text
-The developer fixed the bug because it caused the app to crash.
-```
-
-To interpret the word "it," the model can use relationships between tokens to associate it with "the bug."
-
-Attention calculates relationships between token representations using learned parameters.
-
-### Self-Attention
-
-Self-attention allows tokens in a sequence to incorporate information from other relevant tokens.
-
-For example:
-
-```text
-The cat sat on the mat.
-    |       |
-    +-------+
- Relationship between the subject and action
-```
-
-The model can learn that "cat" is associated with the action "sat."
-
-Transformers use multiple attention heads to learn different types of relationships in parallel.
-
-**Why is attention important?**
-
-Without contextual information, a word can have several meanings. Attention helps the model interpret words based on their surrounding context.
-
-**Real-world example:**
-
-A customer asks:
-
-"I ordered a phone, but it arrived damaged. Can I return it?"
-
-Attention helps the model connect "it" with the phone and interpret the user's return request.
-
----
-
-## 4️⃣ Transformer Architecture
-
-**What is a transformer?**
-
-A transformer is a neural network architecture that uses attention and other computational layers to process sequences of tokens.
-
-Transformers are the foundation of many modern LLMs.
-
-A simplified transformer block contains:
-
-1. Self-attention
-2. A feed-forward neural network
-3. Residual connections
-4. Layer normalization
-
-These components work together across multiple layers to transform token representations.
-
-### Simplified Architecture
-
-```text
-Input Token IDs
-      |
-      v
-Token Embeddings
-      |
-      v
-Transformer Block 1
-  - Self-Attention
-  - Feed-Forward Network
-      |
-      v
-Transformer Block 2
-  - Self-Attention
-  - Feed-Forward Network
-      |
-      v
-More Transformer Blocks
-      |
-      v
-Output Scores for Vocabulary Tokens
-      |
-      v
-Next-Token Selection
-```
-
-Real transformer architectures may include additional components and implementation-specific variations.
-
-**Why are transformer layers important?**
-
-Different layers progressively transform information, allowing the model to learn complex patterns in language and context.
-
-**Real-world example:**
-
-When a coding assistant examines a function, transformer layers help it process relationships among variable names, function calls, comments, and surrounding code to generate a contextually relevant suggestion.
-
----
-
-## 5️⃣ Next-Token Prediction
-
-**What is next-token prediction?**
-
-Next-token prediction is the central training objective of many generative LLMs.
-
-The model estimates which token should come next, given the preceding context.
-
-For example:
-
-```text
-Input:  The capital of France is
-Next:   Paris
-```
-
-After selecting "Paris," the model can predict what comes next if the response continues.
-
-For an actual question-answering system, the input also includes the user's question and any relevant conversation or instructions.
-
-**Why is next-token prediction powerful?**
-
-Learning to predict tokens across diverse text helps the model learn grammar, factual associations, writing styles, and other useful patterns.
-
-However, next-token prediction does not guarantee that every generated statement is correct.
-
-**Real-world example:**
-
-A coding assistant receives:
-
-```python
-def add(a, b):
-```
-
-It may predict the following code:
-
-```python
-    return a + b
-```
-
-The model generates the code token by token, based on the input context and learned patterns.
-
----
-
-## 6️⃣ Training a Large Language Model
-
-**What is training?**
-
-Training is the process through which a model learns patterns by adjusting its internal parameters.
-
-A simplified training workflow:
-
-```text
-Training Text
-     |
-     v
-Tokenization
-     |
-     v
-Model Predicts Next Tokens
-     |
-     v
-Compare Predictions with Training Targets
-     |
-     v
-Calculate Prediction Error (Loss)
-     |
-     v
-Backpropagation
-     |
-     v
-Update Parameters Using an Optimizer
-     |
-     v
-Repeat Many Times
-```
-
-### Important Training Concepts
-
-- **Training data:** Text and other supported data used to teach the model.
-- **Parameters:** Learned numerical values inside the neural network.
-- **Loss:** A measure of how poorly the model predicts its training targets.
-- **Backpropagation:** Computes gradients that indicate how parameters contributed to the error.
-- **Optimizer:** Uses gradients to update the parameters.
-- **Compute infrastructure:** GPUs or other specialized hardware used to perform large-scale calculations.
-
-Large-scale training can require enormous datasets, substantial computing resources, and extensive engineering.
-
-After initial training, some models undergo additional stages, such as supervised fine-tuning and preference-based alignment, to improve their usefulness and behavior.
-
-**Real-world example:**
-
-A language model learns from many examples of questions and answers, articles, and code. During training, it adjusts its parameters to improve its predictions. The resulting model can then be used for tasks such as answering questions and assisting with programming.
-
----
-
-## 7️⃣ Inference: Generating an Answer
-
-**What is inference?**
-
-Inference is the process of using a trained model to produce an output.
-
-Training teaches the model. Inference uses what the model has learned.
-
-For many generative LLMs, response generation works as follows:
-
-1. Receive the input prompt and relevant context.
-2. Tokenize the input.
-3. Process the tokens through the model.
-4. Calculate scores or probabilities for possible next tokens.
-5. Select a token according to the decoding strategy.
-6. Append the token to the generated sequence.
-7. Repeat until a stopping condition is reached.
-
-### Example
-
-```text
-Prompt:
-Explain Android Jetpack Compose.
-
-Generated response:
-Android Jetpack Compose is a modern toolkit
-for building native Android user interfaces...
-```
-
-The model generates the response incrementally, rather than necessarily producing the entire answer in one prediction.
-
-### What Is Temperature?
-
-Temperature is a generation setting that influences how the model selects among possible next tokens.
-
-- **Lower temperature:** Generally favors higher-probability choices and more predictable output.
-- **Higher temperature:** Generally allows more varied and less predictable output.
-
-Temperature does not add knowledge to the model or guarantee creativity or correctness.
-
-**Real-world example:**
-
-A technical support assistant may use relatively conservative generation settings for consistent answers, while a creative writing assistant may allow more variation.
-
----
-
-## 🌍 Real-World Example: Building an AI Customer Support Assistant
-
-Imagine an e-commerce company wants to build an AI assistant that answers questions about orders and returns.
-
-### User Question
-
-```text
-"My headphones arrived damaged.
-Can I return them?"
-```
-
-### How the System Works
-
-**Step 1: Receive the question**
-
-The application sends the user's message to the AI system.
-
-**Step 2: Tokenize the input**
-
-The text is divided into tokens and converted into token IDs.
-
-**Step 3: Process the context**
-
-The transformer processes the input and uses attention to understand the relationships between the damaged headphones and the return request.
-
-**Step 4: Retrieve relevant information if needed**
-
-A retrieval system may search the company's return policy or order database. This is an additional application-level capability, not an automatic feature of every LLM.
-
-**Step 5: Generate the response**
-
-The model uses the available context to generate a helpful answer.
-
-**Step 6: Display the answer**
-
-For example:
-
-```text
-"I'm sorry your headphones arrived damaged.
-According to our return policy, damaged items
-may qualify for a return. Please provide your
-order number so we can check your eligibility."
-```
-
-This is an illustrative response. A real system should verify the applicable policy and order details before making definitive claims.
-
-### Technologies That Could Be Used
-
-| Component | Example technologies |
-|---|---|
-| Mobile application | Android, Kotlin, Flutter |
-| Backend API | Python, Flask, FastAPI, Node.js |
-| Language model | OpenAI API or another compatible LLM service |
-| Retrieval | Embeddings and a vector database |
-| Business data | SQL or a company order-management API |
-| Security | Authentication, authorization, and data protection |
-
-**Important:** The LLM generates language. The surrounding application connects it to verified order data, business rules, and authorized actions.
-
----
-
-## 📱 Real-World Example: Integrating an LLM into an Android or Flutter App
-
-Suppose you are building a mobile learning assistant that explains programming concepts to beginners.
-
-### Application Workflow
-
-```text
-Android / Flutter App
-        |
-        v
-User Enters a Question
-        |
-        v
-Application Sends API Request
-        |
-        v
-Backend or LLM Service
-        |
-        v
-LLM Processes the Prompt
-        |
-        v
-Response Generated
-        |
-        v
-App Displays the Explanation
-```
-
-### Example Use Cases
-
-- Explain Kotlin, Java, Dart, and Python concepts.
-- Generate quizzes for programming learners.
-- Summarize technical documentation.
-- Answer questions about uploaded learning materials.
-- Provide contextual coding assistance.
-
-### Example API Interaction
-
-A mobile app could send a request to a backend service using an HTTP POST request.
-
-Illustrative request body:
-
-```json
-{
-  "question": "Explain Kotlin coroutines in simple words",
-  "audience": "beginner"
-}
-```
-
-The backend can combine the question with appropriate instructions, call an LLM service, and return the generated answer to the app.
-
-**Security best practice:** Do not embed a private LLM API key directly in a publicly distributed mobile application. Keep secret credentials on a secure backend and apply authentication, authorization, rate limits, and appropriate data-handling controls.
-
----
-
-## 🧠 Important LLM Concepts at a Glance
-
-| Concept | Simple meaning |
-|---|---|
-| LLM | AI model trained to process and generate language |
-| Token | A piece of text processed by the model |
-| Tokenization | Breaking text into tokens |
-| Token ID | Numerical identifier assigned to a token |
-| Embedding | Vector representation of a token or other data |
-| Attention | Mechanism for incorporating information from relevant tokens |
-| Transformer | Neural network architecture used by many LLMs |
-| Parameter | A learned numerical value in the model |
-| Training | Learning patterns by optimizing model parameters |
-| Loss | A measure of prediction error |
-| Backpropagation | Computing gradients used for parameter updates |
-| Inference | Generating output with a trained model |
-| Next-token prediction | Estimating the next token from the preceding context |
-| Temperature | Setting that affects variation in token selection |
-| Prompt | Input instructions or context provided to the model |
-| Context window | Amount of input and generated content the model can process in a request |
-| Hallucination | Plausible-sounding output that may contain incorrect or unsupported information |
-| RAG | Retrieval-Augmented Generation; supplying retrieved information to help the model answer |
-| Fine-tuning | Further training a model on a targeted dataset |
-
----
-
-## ⚖️ LLMs vs. Traditional Rule-Based Software
-
-| Traditional rule-based software | Large Language Models |
-|---|---|
-| Primarily follows explicitly programmed rules | Learns statistical patterns from training data |
-| Often produces predictable outputs for the same input and state | May produce different outputs depending on context and generation settings |
-| Requires developers to implement specific behavior | Can generalize across many language tasks |
-| Best suited to clearly defined rules and workflows | Useful for language generation, summarization, and flexible question answering |
-| Can be easier to validate for deterministic business logic | Requires evaluation and safeguards against incorrect outputs |
-
-In real-world systems, both approaches are often combined. Traditional code can enforce permissions, validate data, and execute business rules, while an LLM handles flexible language tasks.
-
----
-
-## ⚠️ Limitations of LLMs
-
-Although LLMs are powerful, they have important limitations:
-
-- **Hallucinations:** They can generate incorrect or invented information.
-- **Knowledge limitations:** Their built-in knowledge may be outdated or incomplete.
-- **Context limitations:** They cannot process unlimited information in a single request.
-- **Bias:** Training data may contain biases that affect outputs.
-- **Security risks:** Poorly designed applications can be vulnerable to prompt injection or data leakage.
-- **Cost and latency:** Large models may require significant computing resources or API expenditure.
-- **No guaranteed reasoning correctness:** A fluent explanation is not proof that the answer is correct.
-
-For critical tasks, validate outputs, use trusted sources, enforce business rules, and keep humans involved where appropriate.
-
----
-
-## 🎯 Key Takeaways
-
-1. **Tokenization** converts text into manageable pieces.
-2. **Embeddings** represent tokens as numerical vectors.
-3. **Attention** helps the model use relationships between tokens.
-4. **Transformers** process contextual information through neural network layers.
-5. **Training** adjusts parameters to improve predictions.
-6. **Next-token prediction** is a central objective of many generative LLMs.
-7. **Inference** uses a trained model to generate a response.
-8. **Real-world AI applications** combine LLMs with APIs, databases, retrieval systems, and application logic.
-
-### The Main Idea
-
-An LLM does not simply look up a predefined answer for every question. It uses patterns learned during training to calculate likely next tokens and generates a response sequentially. External tools and verified data can extend what an LLM-powered application can do.
-
----
-
-## 📚 Further Learning Resources
-
-- [OpenAI — Introduction to Large Language Models](https://platform.openai.com/docs/)
-- [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/)
-- [Attention Is All You Need — Research Paper](https://arxiv.org/abs/1706.03762)
-- [Tiktokenizer — Explore Tokenization](https://tiktokenizer.vercel.app/)
-- [Nomic Atlas — Explore Embeddings](https://atlas.nomic.ai/)
-
-**Recommended learning path:** Start with tokens and embeddings, understand attention and transformer architecture, learn training versus inference, and then build a small AI-powered application using an LLM API.
-
-*This README is intended for educational purposes and provides a simplified introduction to how modern LLMs work.*
-
-
-<p align="center"><img width="1148" height="292" alt="Screenshot 2026-10-23 at 10 46 40 AM" src="https://github.com/user-attachments/assets/a0b0416e-2f57-4bda-9bb1-de8723ac859a" /></p>
-
+<p align="center"><img width="1148" height="292" alt="Screenshot 2026-10-23 at 10 46 40 AM" src="https://github.com/user-attachments/assets/0bef15f8-7311-42b2-8e1a-948bc4e68443" /></p>
 
 <h1 align="center">🤖 Generative AI & LangChain</h1>
 
@@ -605,6 +26,7 @@ We will progress from basic concepts to building AI-powered applications using P
 
 - The fundamentals of Artificial Intelligence, Machine Learning, NLP, and Generative AI.
 - How Large Language Models (LLMs) understand prompts and generate responses.
+- What actually happens inside an LLM: tokenization, embeddings, attention, transformers, training, and inference.
 - Prompt engineering techniques, including zero-shot, one-shot, few-shot, and structured prompting.
 - How LangChain connects language models, prompts, tools, and output parsers.
 - How to build sequential workflows using LangChain Expression Language (LCEL).
@@ -618,25 +40,24 @@ We will progress from basic concepts to building AI-powered applications using P
 
 ## 📑 Table of Contents
 
-| # | Module |
-|---|---|
 | 1 | [🧩 Module 1: Foundations of Artificial Intelligence](#module-1-foundations-of-artificial-intelligence) |
-| 2 | [✍️ Module 2: Prompt Engineering](#module-2-prompt-engineering) |
-| 3 | [🔗 Module 3: Introduction to LangChain](#module-3-introduction-to-langchain) |
-| 4 | [⚙️ Module 4: Chains and LangChain Expression Language (LCEL)](#module-4-chains-and-langchain-expression-language-lcel) |
-| 5 | [🧾 Module 5: Output Parsers and Structured Responses](#module-5-output-parsers-and-structured-responses) |
-| 6 | [💬 Module 6: Conversation History and Memory](#module-6-conversation-history-and-memory) |
-| 7 | [📄 Module 7: Documents, Embeddings, and Vector Databases](#module-7-documents-embeddings-and-vector-databases) |
-| 8 | [🔍 Module 8: Retrieval-Augmented Generation (RAG)](#module-8-retrieval-augmented-generation-rag) |
-| 9 | [🛠️ Module 9: Tools and AI Agents](#module-9-tools-and-ai-agents) |
-| 10 | [🧠 Module 10: AI Models and Model Selection](#module-10-ai-models-and-model-selection) |
-| 11 | [🌐 Module 11: Building a Generative AI Application with Python and Flask](#module-11-building-a-generative-ai-application-with-python-and-flask) |
-| 12 | [🧱 Module 12: Understanding Fine-Tuning and Model Adaptation](#module-12-understanding-fine-tuning-and-model-adaptation) |
-| 13 | [🚀 Module 13: Real-World Project Ideas](#module-13-real-world-project-ideas) |
-| 14 | [🧪 Module 14: Testing, Evaluation, and Responsible AI](#module-14-testing-evaluation-and-responsible-ai) |
-| 15 | [📖 Module 15: Important Terms to Remember](#module-15-important-terms-to-remember) |
-| 16 | [🎤 Module 16: Interview Preparation Questions](#module-16-interview-preparation-questions) |
-| 17 | [🏁 Final Summary](#final-summary) |
+| 2 | [🔬 Module 2: How Large Language Models Actually Work](#module-2-how-large-language-models-actually-work) |
+| 3 | [✍️ Module 3: Prompt Engineering](#module-3-prompt-engineering) |
+| 4 | [🔗 Module 4: Introduction to LangChain](#module-4-introduction-to-langchain) |
+| 5 | [⚙️ Module 5: Chains and LangChain Expression Language (LCEL)](#module-5-chains-and-langchain-expression-language-lcel) |
+| 6 | [🧾 Module 6: Output Parsers and Structured Responses](#module-6-output-parsers-and-structured-responses) |
+| 7 | [💬 Module 7: Conversation History and Memory](#module-7-conversation-history-and-memory) |
+| 8 | [📄 Module 8: Documents, Embeddings, and Vector Databases](#module-8-documents-embeddings-and-vector-databases) |
+| 9 | [🔍 Module 9: Retrieval-Augmented Generation (RAG)](#module-9-retrieval-augmented-generation-rag) |
+| 10 | [🛠️ Module 10: Tools and AI Agents](#module-10-tools-and-ai-agents) |
+| 11 | [🧠 Module 11: AI Models and Model Selection](#module-11-ai-models-and-model-selection) |
+| 12 | [🌐 Module 12: Building a Generative AI Application with Python and Flask](#module-12-building-a-generative-ai-application-with-python-and-flask) |
+| 13 | [🧱 Module 13: Understanding Fine-Tuning and Model Adaptation](#module-13-understanding-fine-tuning-and-model-adaptation) |
+| 14 | [🚀 Module 14: Real-World Project Ideas](#module-14-real-world-project-ideas) |
+| 15 | [🧪 Module 15: Testing, Evaluation, and Responsible AI](#module-15-testing-evaluation-and-responsible-ai) |
+| 16 | [📖 Module 16: Important Terms to Remember](#module-16-important-terms-to-remember) |
+| 17 | [🎤 Module 17: Interview Preparation Questions](#module-17-interview-preparation-questions) |
+| 18 | [🏁 Final Summary](#final-summary) |
 
 ---
 
@@ -645,7 +66,8 @@ We will progress from basic concepts to building AI-powered applications using P
 ```mermaid
 flowchart TD
     A["AI Fundamentals"] --> B["Generative AI and LLMs"]
-    B --> C["Prompt Engineering"]
+    B --> N["How LLMs Work Internally"]
+    N --> C["Prompt Engineering"]
     C --> D["LangChain Fundamentals"]
     D --> E["Prompts and Output Parsers"]
     E --> F["Chains and LCEL"]
@@ -734,17 +156,9 @@ An LLM can help with:
 
 ### How does an LLM generate an answer?
 
-At a simplified level, the model processes the input and predicts suitable next tokens based on learned patterns and the context it receives.
+In short: the model turns the input into tokens, works out the relationships between them, and predicts suitable next tokens from learned patterns and the context it receives. It is not looking every answer up in a fixed database.
 
-A token may be a word, part of a word, punctuation, or another text unit.
-
-For example:
-
-**Input:** `The capital of India is`
-
-**Possible continuation:** `New Delhi.`
-
-The model does not simply look up every answer in a fixed database. It generates a response from learned patterns and available context.
+Module 2 follows this process stage by stage.
 
 ### What is an LLM not guaranteed to do?
 
@@ -768,15 +182,398 @@ An LLM is a type of foundation model focused on language. Foundation models can 
 
 **Model parameters:** Learned values inside a trained model that help determine its behavior.
 
-**Inference parameters:** Settings used when generating a response, such as temperature and maximum output length.
-
-For example, temperature influences how varied or predictable responses may be. Lower values often produce more consistent outputs, while higher values may produce more variation.
+**Inference parameters:** Settings used when generating a response, such as temperature and maximum output length. Temperature is explained in detail in Module 2.
 
 ---
 
-# ✍️ Module 2: Prompt Engineering
+# 🔬 Module 2: How Large Language Models Actually Work
 
-## 6. What is a Prompt?
+Module 1 told you *what* an LLM is. This module opens the box and follows a single question all the way through the model — from the characters you type to the answer that appears on screen.
+
+Every stage below is simplified on purpose. Real systems add further detail, but these are the stages that matter while you are learning.
+
+## 6. How an LLM Turns Text into an Answer
+
+An LLM does not read your sentence as a whole. It converts the text into numbers, works out the relationships between those numbers, and then predicts what should come next — one piece at a time.
+
+```mermaid
+flowchart TD
+    A["👤 User input"] --> B["🔤 Tokenization<br/>Text is split into tokens"]
+    B --> C["🔢 Token IDs and embeddings<br/>Tokens become numbers"]
+    C --> D["🧠 Transformer layers<br/>Numbers are processed with attention"]
+    D --> E["🎯 Next-token prediction<br/>A likely next token is chosen"]
+    E --> F{"Response complete?"}
+    F -- "No" --> G["🔁 Add the token to the input<br/>and process again"]
+    G --> D
+    F -- "Yes" --> H["📨 Answer shown to the user"]
+```
+
+> [!NOTE]
+> **Attention is not a separate stage.** Attention happens *inside* each transformer layer, so the two work together rather than one running after the other.
+
+## 7. Tokenization
+
+**What is tokenization?**
+
+Tokenization is the process of breaking text into smaller pieces called *tokens*. A token may be a complete word, part of a word, a punctuation mark, a number, or another text element.
+
+For example, this sentence:
+
+```text
+Hello, how are you?
+```
+
+might be divided into tokens resembling:
+
+```text
+["Hello", ",", " how", " are", " you", "?"]
+```
+
+The exact boundaries depend on the tokenizer the model uses, so two models can split the same sentence differently.
+
+Each token is then mapped to a numerical ID, because the model works with numbers rather than characters.
+
+**Why is tokenization important?**
+
+Computers process numerical data. Tokenization converts human-readable text into units that can be represented and processed mathematically. Because models are limited and billed by tokens, tokenization also shapes what fits in a request and what it costs.
+
+**Real-world example:**
+
+When you type a question into ChatGPT, your text is tokenized before the model sees it. A long message full of unusual spellings or emoji usually becomes more tokens than a short, plain sentence.
+
+**Explore:** [Tiktokenizer](https://tiktokenizer.vercel.app/) lets you paste text and watch how different models divide it into tokens.
+
+## 8. Embeddings
+
+**What are embeddings?**
+
+Embeddings are numerical vectors that represent tokens in a mathematical space. Internally, a token may be represented by a vector holding hundreds or thousands of values, depending on the model.
+
+A simplified illustration:
+
+```text
+"Cat"      → [0.21, 0.45, 0.78, ...]
+"Dog"      → [0.25, 0.41, 0.73, ...]
+"Airplane" → [0.82, 0.12, 0.34, ...]
+```
+
+These numbers are illustrative, not real model embeddings. The point is that "Cat" and "Dog" end up close together, while "Airplane" sits further away.
+
+During training, embeddings and other parameters learn representations that help the model work with linguistic patterns and relationships.
+
+**Why are embeddings important?**
+
+They give the neural network something numerical to transform, so it can work with meaning and context instead of raw spelling.
+
+**Real-world example:**
+
+In semantic search, someone looking for "ways to improve sleep" may be shown a document titled "Tips for better rest", because the two texts sit close together in embedding space even though they share almost no words.
+
+**Explore:** [Nomic Atlas](https://atlas.nomic.ai/) shows ways to visualize embeddings and the relationships inside a dataset.
+
+## 9. Attention Mechanism
+
+**What is attention?**
+
+Attention tells a transformer which other tokens matter when it processes a particular token.
+
+Consider this sentence:
+
+```text
+The developer fixed the bug because it caused the app to crash.
+```
+
+To interpret the word "it", the model needs a link to "the bug". Attention supplies that link.
+
+### Self-Attention
+
+Self-attention lets tokens in a sequence pull in information from other relevant tokens:
+
+```text
+The cat sat on the mat.
+    |       |
+    +-------+
+   "cat" relates to "sat"
+```
+
+Transformers use multiple attention heads so different kinds of relationships can be learned in parallel.
+
+**Why is attention important?**
+
+On its own, a word can mean several things. Attention lets the model interpret a word from the words surrounding it.
+
+**Real-world example:**
+
+A customer writes: "I ordered a phone, but it arrived damaged. Can I return it?" Attention helps the system connect "it" with the phone and understand that a return is being requested.
+
+## 10. Transformer Architecture
+
+**What is a transformer?**
+
+A transformer is a neural network architecture that uses attention and other computational layers to process a sequence of tokens. It is the foundation of most modern LLMs.
+
+A simplified transformer block contains:
+
+1. Self-attention.
+2. A feed-forward neural network.
+3. Residual connections.
+4. Layer normalization.
+
+These parts work together across many layers, each one transforming the token representations a little further.
+
+```mermaid
+flowchart TD
+    A["Input token IDs"] --> B["Token embeddings"]
+    B --> C["Transformer block 1<br/>Self-attention + feed-forward"]
+    C --> D["Transformer block 2<br/>Self-attention + feed-forward"]
+    D --> E["More transformer blocks<br/>repeated many times"]
+    E --> F["Scores for every token in the vocabulary"]
+    F --> G["Next-token selection"]
+```
+
+Real architectures include additional components and vary from model to model.
+
+**Why are transformer layers important?**
+
+Different layers transform information progressively, which is what lets the model learn complex patterns in language and context.
+
+**Real-world example:**
+
+When a coding assistant examines a function, the transformer layers help it relate variable names, function calls, comments, and surrounding code before it suggests something that fits.
+
+## 11. Next-Token Prediction
+
+**What is next-token prediction?**
+
+Next-token prediction is the central training objective of most generative LLMs: given the text so far, estimate which token should come next.
+
+```text
+Input:  The capital of France is
+Next:   Paris
+```
+
+Once "Paris" is selected, the model can predict what follows, and so on, until the response stops.
+
+In a real question-answering system, the input also carries the user's question, the conversation history, and any instructions the application adds.
+
+**Why is it powerful?**
+
+Learning to predict the next token across enormous and varied text pushes the model to pick up grammar, factual associations, writing styles, and many other useful patterns.
+
+**Why it is not enough on its own:**
+
+Predicting a likely next token does not guarantee the statement is true, which is one reason generated answers still need checking.
+
+**Real-world example:**
+
+A coding assistant receives:
+
+```python
+def add(a, b):
+```
+
+and predicts:
+
+```python
+    return a + b
+```
+
+It builds the code token by token, from the surrounding context and the patterns it learned.
+
+## 12. Training a Large Language Model
+
+**What is training?**
+
+Training is the process through which a model learns patterns by adjusting its internal parameters.
+
+```mermaid
+flowchart TD
+    A["Training text"] --> B["Tokenization"]
+    B --> C["Model predicts the next tokens"]
+    C --> D["Compare predictions with training targets"]
+    D --> E["Calculate prediction error (loss)"]
+    E --> F["Backpropagation computes gradients"]
+    F --> G["Optimizer updates the parameters"]
+    G --> H["Repeat many times"]
+    H --> C
+```
+
+### Important Training Concepts
+
+| Concept | Meaning |
+|---|---|
+| Training data | The text and other supported data used to teach the model |
+| Parameters | Learned numerical values inside the neural network |
+| Loss | A measure of how poorly the model predicts its targets |
+| Backpropagation | Computes gradients showing how parameters contributed to the error |
+| Optimizer | Uses those gradients to update the parameters |
+| Compute infrastructure | GPUs or other specialized hardware used for the calculations |
+
+Large-scale training can require enormous datasets, substantial computing resources, and a great deal of engineering.
+
+After initial training, some models go through further stages, such as supervised fine-tuning and preference-based alignment, to improve how useful and how well behaved they are. The fine-tuning module later in this guide looks at that in more depth.
+
+**Real-world example:**
+
+A model learns from many examples of questions and answers, articles, and code. Each pass nudges its parameters so its predictions improve, and the trained result can then answer questions or assist with programming.
+
+## 13. Inference and Generation Settings
+
+**What is inference?**
+
+Inference is using a trained model to produce an output. Training teaches the model; inference uses what it learned.
+
+For most generative LLMs, producing a reply works like this:
+
+1. Receive the prompt and any relevant context.
+2. Tokenize the input.
+3. Process the tokens through the model.
+4. Calculate scores or probabilities for possible next tokens.
+5. Select a token according to the decoding strategy.
+6. Append that token to the answer so far.
+7. Repeat until a stopping condition is reached.
+
+```text
+Prompt:
+Explain Android Jetpack Compose.
+
+Generated response:
+Android Jetpack Compose is a modern toolkit
+for building native Android user interfaces...
+```
+
+The reply grows incrementally rather than arriving as one finished block.
+
+### What Is Temperature?
+
+Temperature is a generation setting that influences how the model selects among possible next tokens.
+
+| Setting | Typical effect |
+|---|---|
+| Lower temperature | More predictable, more consistent choices |
+| Higher temperature | More varied, less predictable choices |
+
+Temperature does not add knowledge to the model, and it does not guarantee creativity or correctness.
+
+**Real-world example:**
+
+A technical support assistant usually keeps generation settings conservative so answers stay consistent, while a creative writing assistant may allow far more variation.
+
+## 14. LLMs Compared with Traditional Software
+
+| Traditional rule-based software | Large language models |
+|---|---|
+| Follows explicitly programmed rules | Learns statistical patterns from training data |
+| Usually gives the same output for the same input and state | May give different outputs depending on context and settings |
+| Developers implement each specific behavior | Can generalize across many language tasks |
+| Best for clearly defined rules and workflows | Useful for generation, summarization, and flexible question answering |
+| Easier to validate for deterministic business logic | Needs evaluation and safeguards against incorrect output |
+
+Real systems usually combine both. Ordinary code enforces permissions, validates data, and runs business rules, while the LLM handles the flexible language work.
+
+## 15. What LLMs Do Not Do Reliably
+
+- **Hallucinations:** they can state incorrect or invented information confidently.
+- **Knowledge limits:** built-in knowledge may be outdated or incomplete.
+- **Context limits:** a single request cannot carry unlimited information.
+- **Bias:** patterns in the training data can show up in the output.
+- **Security risks:** a poorly designed application can leak data or fall victim to prompt injection.
+- **Cost and latency:** large models need real computing resources and take time to answer.
+- **No guaranteed reasoning:** a fluent explanation is not proof that the answer is correct.
+
+For anything important, verify output against a trusted source, enforce your own business rules, and keep a human involved where the consequences matter.
+
+## 16. Real-World Example: AI Customer Support Assistant
+
+An e-commerce company wants an assistant that answers questions about orders and returns.
+
+**User question:**
+
+```text
+My headphones arrived damaged.
+Can I return them?
+```
+
+**Step 1: Receive the question.** The application sends the customer's message to the AI system.
+
+**Step 2: Tokenize the input.** The text is divided into tokens and converted into token IDs.
+
+**Step 3: Process the context.** The transformer uses attention to connect the damaged headphones with the return request.
+
+**Step 4: Retrieve relevant information.** A retrieval system may search the company's return policy or order database. This is an application-level capability, not an automatic feature of every LLM.
+
+**Step 5: Generate the response.** The model uses the available context to produce a helpful answer.
+
+**Step 6: Display the answer.**
+
+```text
+I'm sorry your headphones arrived damaged.
+According to our return policy, damaged items
+may qualify for a return. Please provide your
+order number so we can check your eligibility.
+```
+
+This reply is illustrative. A real system should confirm the applicable policy and the actual order details before stating anything definitive.
+
+### Technologies That Could Be Used
+
+| Component | Example technologies |
+|---|---|
+| Mobile application | Android, Kotlin, Flutter |
+| Backend API | Python, Flask, FastAPI, Node.js |
+| Language model | An LLM service API |
+| Retrieval | Embeddings and a vector database |
+| Business data | SQL or a company order-management API |
+| Security | Authentication, authorization, and data protection |
+
+**Important:** the LLM generates the language. The surrounding application supplies verified order data, business rules, and permission to act.
+
+## 17. Real-World Example: LLM Inside an Android or Flutter App
+
+Imagine a mobile learning assistant that explains programming concepts to beginners.
+
+```mermaid
+flowchart TD
+    A["📱 Android / Flutter app"] --> B["User enters a question"]
+    B --> C["App sends an API request"]
+    C --> D["🌐 Your backend"]
+    D --> E["LLM service processes the prompt"]
+    E --> F["Response is generated"]
+    F --> G["App displays the explanation"]
+```
+
+**Typical uses:**
+
+- Explaining Kotlin, Java, Dart, and Python concepts.
+- Generating quizzes for programming learners.
+- Summarizing technical documentation.
+- Answering questions about uploaded learning material.
+- Providing contextual coding assistance.
+
+**Example API interaction:**
+
+The mobile app sends an HTTP POST request to a backend service. An illustrative request body:
+
+```json
+{
+  "question": "Explain Kotlin coroutines in simple words",
+  "audience": "beginner"
+}
+```
+
+The backend combines the question with suitable instructions, calls an LLM service, and returns the generated answer to the app. The Flask integration module later in this guide shows how that backend is built.
+
+> [!WARNING]
+> **Never ship a private LLM API key inside a mobile application.** Anyone who installs the app can extract it. Keep secret credentials on a secure backend and protect that backend with authentication, authorization, rate limits, and appropriate data-handling controls.
+
+> [!TIP]
+> **Module 2 in brief** — text becomes tokens, tokens become embeddings, attention inside transformer layers gives those embeddings context, and the model then predicts one token at a time. Everything else in this guide builds on top of that loop.
+
+---
+
+# ✍️ Module 3: Prompt Engineering
+
+## 18. What is a Prompt?
 
 A prompt is the input or instruction given to an AI model.
 
@@ -809,7 +606,7 @@ Use easy English and short code examples.
 
 The second prompt defines the role, topic, audience, and expected output.
 
-## 7. The Four Important Parts of a Good Prompt
+## 19. The Four Important Parts of a Good Prompt
 
 A useful prompt may contain the following elements:
 
@@ -822,7 +619,7 @@ A useful prompt may contain the following elements:
 
 Not every prompt needs all four elements, but they are a useful starting point.
 
-## 8. Types of Prompt Engineering
+## 20. Types of Prompt Engineering
 
 ### 8.1 Zero-Shot Prompting
 
@@ -973,7 +770,7 @@ The template can be reused for many different topics.
 
 **Real-world application:** Chatbots, tutoring applications, report generators, and automated customer support.
 
-## 9. Chain-of-Thought and Self-Consistency
+## 21. Chain-of-Thought and Self-Consistency
 
 **Chain-of-thought prompting** is a technique associated with encouraging a model to approach a problem through intermediate reasoning steps. In practical applications, it is often preferable to request a concise explanation, a verifiable calculation, or an explicit solution procedure rather than rely on hidden reasoning traces.
 
@@ -981,7 +778,7 @@ The template can be reused for many different topics.
 
 For arithmetic, finance, and other exact tasks, use a calculator or a suitable programmatic tool to verify results.
 
-## 10. What is Hallucination in Generative AI?
+## 22. What is Hallucination in Generative AI?
 
 A hallucination occurs when an AI model produces information that is incorrect, unsupported, or fabricated.
 
@@ -1002,9 +799,9 @@ No single technique eliminates hallucinations completely.
 
 ---
 
-# 🔗 Module 3: Introduction to LangChain
+# 🔗 Module 4: Introduction to LangChain
 
-## 11. What is LangChain?
+## 23. What is LangChain?
 
 LangChain is an open-source framework that helps developers build applications powered by language models.
 
@@ -1037,7 +834,7 @@ flowchart TD
 
 This is the basic pattern for a simple LangChain workflow. More advanced applications may also use retrieval, tools, memory, and conditional branching.
 
-## 12. Important LangChain Components
+## 24. Important LangChain Components
 
 | Component | What it does | Real-world use |
 |---|---|---|
@@ -1054,7 +851,7 @@ This is the basic pattern for a simple LangChain workflow. More advanced applica
 
 LangChain APIs evolve over time. For new projects, prefer the current `langchain` and `langchain-core` interfaces and the integration package required by your model provider.
 
-## 13. Chat Models and Message Types
+## 25. Chat Models and Message Types
 
 Chat models commonly receive structured messages rather than a single block of text.
 
@@ -1094,7 +891,7 @@ A useful distinction: a tool call is an action requested by the model, while the
 
 ---
 
-## 14. Creating a PromptTemplate
+## 26. Creating a PromptTemplate
 
 In LangChain, `PromptTemplate` is useful for building reusable text prompts.
 
@@ -1122,7 +919,7 @@ Suppose you are creating an educational application. You can use the same templa
 
 You do not need to rewrite the complete prompt for each request.
 
-## 15. Creating a ChatPromptTemplate
+## 27. Creating a ChatPromptTemplate
 
 `ChatPromptTemplate` is designed for structured conversational messages.
 
@@ -1149,7 +946,7 @@ The resulting prompt contains a system instruction and a human message.
 
 **Real-world application:** Keeping the behavior of a chatbot consistent while adapting its responses to each user.
 
-## 16. What is a MessagesPlaceholder?
+## 28. What is a MessagesPlaceholder?
 
 A `MessagesPlaceholder` allows a prompt to include a list of messages at a specific position.
 
@@ -1174,9 +971,9 @@ For example, if a user previously said they were learning Python, the applicatio
 
 ---
 
-# ⚙️ Module 4: Chains and LangChain Expression Language (LCEL)
+# ⚙️ Module 5: Chains and LangChain Expression Language (LCEL)
 
-## 17. What is a Chain?
+## 29. What is a Chain?
 
 A chain connects multiple processing steps into one workflow.
 
@@ -1198,7 +995,7 @@ Return the result
 
 Each step has a clear responsibility, which makes the workflow easier to understand, test, and maintain.
 
-## 18. What is LangChain Expression Language (LCEL)?
+## 30. What is LangChain Expression Language (LCEL)?
 
 ```mermaid
 flowchart LR
@@ -1265,9 +1062,9 @@ This is helpful when several outputs must be assembled into a single result.
 
 ---
 
-# 🧾 Module 5: Output Parsers and Structured Responses
+# 🧾 Module 6: Output Parsers and Structured Responses
 
-## 19. Why do we need Output Parsers?
+## 31. Why do we need Output Parsers?
 
 An AI model may return a natural-language answer when an application actually needs structured data.
 
@@ -1293,7 +1090,7 @@ The customer is unhappy because the order arrived late.
 
 The JSON response is easier for an application to process, validate, store, or display.
 
-## 20. StrOutputParser
+## 32. StrOutputParser
 
 `StrOutputParser` converts supported model outputs into plain strings.
 
@@ -1307,7 +1104,7 @@ chain = prompt | model | output_parser
 
 Use it when your application needs a normal text response.
 
-## 21. JsonOutputParser
+## 33. JsonOutputParser
 
 `JsonOutputParser` helps parse model output into JSON-compatible Python data.
 
@@ -1367,9 +1164,9 @@ Can become:
 
 ---
 
-# 💬 Module 6: Conversation History and Memory
+# 💬 Module 7: Conversation History and Memory
 
-## 22. Why does a Chatbot Need Conversation History?
+## 34. Why does a Chatbot Need Conversation History?
 
 Consider this conversation:
 
@@ -1397,7 +1194,7 @@ sequenceDiagram
     A-->>U: Display response
 ```
 
-## 23. ChatMessageHistory
+## 35. ChatMessageHistory
 
 Chat message history stores messages from a conversation and makes them available for later use.
 
@@ -1405,7 +1202,7 @@ The exact persistence behavior depends on the configured history backend.
 
 For example, an application may retain messages in memory while it is running or persist them in a database.
 
-## 24. Memory vs. Persistent Storage
+## 36. Memory vs. Persistent Storage
 
 These terms should not be confused.
 
@@ -1422,9 +1219,9 @@ Modern LangChain applications commonly use runnable history patterns or LangGrap
 
 ---
 
-# 📄 Module 7: Documents, Embeddings, and Vector Databases
+# 📄 Module 8: Documents, Embeddings, and Vector Databases
 
-## 25. What is a Document in LangChain?
+## 37. What is a Document in LangChain?
 
 A LangChain `Document` represents a piece of content together with associated metadata.
 
@@ -1447,7 +1244,7 @@ document = Document(
 
 Metadata can help the application filter results and show where information originated.
 
-## 26. What is a Document Loader?
+## 38. What is a Document Loader?
 
 A document loader imports content from a source into a format the application can process.
 
@@ -1463,7 +1260,7 @@ LangChain integrations provide loaders such as `PyPDFLoader` and `WebBaseLoader`
 
 **Real-world application:** Importing company policies, product manuals, technical documentation, or educational material into an AI knowledge system.
 
-## 27. What is Text Splitting?
+## 39. What is Text Splitting?
 
 Language models and retrieval systems often work better when long documents are divided into smaller sections called *chunks*.
 
@@ -1491,7 +1288,7 @@ Index chunks for retrieval
 
 Chunk size and overlap should be tested against the document type and questions the application must answer.
 
-## 28. What are Embeddings?
+## 40. What are Embeddings?
 
 Embeddings are numerical representations of data.
 
@@ -1511,7 +1308,7 @@ The vector is a numerical representation, not a direct translation of each word 
 
 Texts with similar meanings may have nearby vectors, depending on the embedding model and similarity measure.
 
-## 29. What is a Vector Database?
+## 41. What is a Vector Database?
 
 A vector database stores and searches vector representations.
 
@@ -1533,9 +1330,9 @@ Semantic search is not perfect. Production systems may combine keyword search, v
 
 ---
 
-# 🔍 Module 8: Retrieval-Augmented Generation (RAG)
+# 🔍 Module 9: Retrieval-Augmented Generation (RAG)
 
-## 30. What is RAG?
+## 42. What is RAG?
 
 Retrieval-Augmented Generation combines information retrieval with language-model generation.
 
@@ -1565,7 +1362,7 @@ flowchart TD
 
 The indexing steps usually happen before a question is asked. At query time, the application retrieves the relevant chunks and supplies them to the model.
 
-## 31. The Three Main Steps of RAG
+## 43. The Three Main Steps of RAG
 
 ### Step 1: Retrieval
 
@@ -1598,7 +1395,7 @@ The policy states that employees receive
 
 The application should also retain source metadata when it needs to display citations or document references.
 
-## 32. What is a Retriever?
+## 44. What is a Retriever?
 
 A retriever takes a query and returns relevant documents.
 
@@ -1618,7 +1415,7 @@ Here, `k=3` requests up to three relevant results in this example.
 
 The quality of the retrieved information matters as much as the quality of the model's generated answer.
 
-## 33. What is a Parent Document Retriever?
+## 45. What is a Parent Document Retriever?
 
 A `ParentDocumentRetriever` is designed to balance precise retrieval with sufficient context.
 
@@ -1628,7 +1425,7 @@ For example, a sentence about refund eligibility might be retrieved from a small
 
 This can be useful when small chunks improve search accuracy but lose important context.
 
-## 34. What is RetrievalQA?
+## 46. What is RetrievalQA?
 
 RetrievalQA is a name associated with older LangChain retrieval-question-answering APIs.
 
@@ -1651,9 +1448,9 @@ RAG can improve grounding, but it does not guarantee that every answer is correc
 
 ---
 
-# 🛠️ Module 9: Tools and AI Agents
+# 🛠️ Module 10: Tools and AI Agents
 
-## 35. What is a Tool?
+## 47. What is a Tool?
 
 A tool allows an AI workflow to perform an action through a function or service.
 
@@ -1667,7 +1464,7 @@ Examples include:
 
 A language model alone does not automatically perform these operations. The application must provide and execute the appropriate tools.
 
-## 36. Creating a Custom Tool
+## 48. Creating a Custom Tool
 
 LangChain provides a `@tool` decorator for defining tools.
 
@@ -1701,7 +1498,7 @@ This example shows how a tool can expose a normal Python function through a stru
 
 For important financial operations, use appropriate numeric types, validation, and business rules rather than relying on an LLM to calculate values directly.
 
-## 37. What is an AI Agent?
+## 49. What is an AI Agent?
 
 An AI agent is a system that uses a model to select actions, use available tools, and work toward a goal.
 
@@ -1724,7 +1521,7 @@ flowchart TD
 
 The exact behavior depends on the tools, model, instructions, and execution limits configured by the application.
 
-## 38. What is the ReAct Pattern?
+## 50. What is the ReAct Pattern?
 
 ```mermaid
 sequenceDiagram
@@ -1760,7 +1557,7 @@ Final answer
 
 The model's choice of tool is not the same as executing it. The application must validate and perform the requested operation.
 
-## 39. What is AgentExecutor?
+## 51. What is AgentExecutor?
 
 In older LangChain APIs, `AgentExecutor` managed the execution of an agent and its tool interactions.
 
@@ -1775,7 +1572,7 @@ Regardless of the framework, production agents need:
 - Logging and monitoring.
 - Human approval for sensitive actions when appropriate.
 
-## 40. What is a Multi-Agent System?
+## 52. What is a Multi-Agent System?
 
 A multi-agent system uses multiple specialized agents that collaborate on a task.
 
@@ -1792,7 +1589,7 @@ Frameworks such as AutoGen, CrewAI, and LangGraph support different approaches t
 
 Multiple agents are not always better. A simple chain or a single agent is often cheaper and easier to test. Use multiple agents when separate roles or independent work genuinely improve the result.
 
-## 41. What is LangGraph?
+## 53. What is LangGraph?
 
 LangGraph is a framework for building stateful workflows and agent applications using graph-based execution.
 
@@ -1814,9 +1611,9 @@ LangGraph is particularly useful when an application needs branching, cycles, st
 
 ---
 
-# 🧠 Module 10: AI Models and Model Selection
+# 🧠 Module 11: AI Models and Model Selection
 
-## 42. Why Do We Need Different AI Models?
+## 54. Why Do We Need Different AI Models?
 
 No single AI model is best for every task.
 
@@ -1859,9 +1656,9 @@ Model capabilities change across versions. Evaluate the specific model and deplo
 
 ---
 
-# 🌐 Module 11: Building a Generative AI Application with Python and Flask
+# 🌐 Module 12: Building a Generative AI Application with Python and Flask
 
-## 43. What is Flask?
+## 55. What is Flask?
 
 Flask is a lightweight Python web framework for building web applications and HTTP APIs.
 
@@ -1887,7 +1684,7 @@ flowchart TD
 
 This approach keeps provider credentials on the backend instead of exposing them in a mobile application.
 
-## 44. Understanding HTTP Status Codes
+## 56. Understanding HTTP Status Codes
 
 | Status code | Meaning | Example |
 |---|---|---|
@@ -1902,7 +1699,7 @@ This approach keeps provider credentials on the backend instead of exposing them
 
 Returning an appropriate status code helps client applications handle errors consistently.
 
-## 45. Set Up a Python Project
+## 57. Set Up a Python Project
 
 Create a project directory:
 
@@ -1945,7 +1742,7 @@ pip freeze > requirements.txt
 
 For a production project, use a deliberately maintained dependency set rather than relying indefinitely on whatever versions happened to be installed.
 
-## 46. Create a Simple Flask API
+## 58. Create a Simple Flask API
 
 Create a file named `app.py`:
 
@@ -2000,7 +1797,7 @@ http://127.0.0.1:5000
 
 Use Flask's development server only for local development. Production applications should use an appropriate production WSGI server and deployment configuration.
 
-## 47. Test the API
+## 59. Test the API
 
 Send a POST request to `/generate` with a JSON body:
 
@@ -2028,7 +1825,7 @@ Expected response from the placeholder implementation:
 
 Once the placeholder is replaced with a real LangChain workflow, the response will contain the generated model output.
 
-## 48. Integrate LangChain with Flask
+## 60. Integrate LangChain with Flask
 
 The following is a simplified illustration of the integration pattern. It assumes that a compatible chat model is already configured.
 
@@ -2096,9 +1893,9 @@ For a real implementation, initialize the provider model, construct the chain, h
 
 ---
 
-# 🧱 Module 12: Understanding Fine-Tuning and Model Adaptation
+# 🧱 Module 13: Understanding Fine-Tuning and Model Adaptation
 
-## 49. What is Fine-Tuning?
+## 61. What is Fine-Tuning?
 
 Fine-tuning means further training a pretrained model on selected data to adapt its behavior to a particular task or domain.
 
@@ -2112,7 +1909,7 @@ Fine-tuning differs from prompting:
 
 Fine-tuning is not necessarily the best first solution. Start with prompting and retrieval when they meet the requirements.
 
-## 50. What are LoRA and QLoRA?
+## 62. What are LoRA and QLoRA?
 
 **LoRA (Low-Rank Adaptation)** is a technique that reduces the number of model parameters that need to be updated during fine-tuning.
 
@@ -2124,7 +1921,7 @@ These approaches can make model adaptation more practical, but they still requir
 
 ---
 
-# 🚀 Module 13: Real-World Project Ideas
+# 🚀 Module 14: Real-World Project Ideas
 
 Here are practical ways to apply the concepts in this guide.
 
@@ -2197,13 +1994,13 @@ Here are practical ways to apply the concepts in this guide.
 
 ---
 
-# 🧪 Module 14: Testing, Evaluation, and Responsible AI
+# 🧪 Module 15: Testing, Evaluation, and Responsible AI
 
 A working AI demonstration is not necessarily a reliable application.
 
 Before deploying an AI-powered feature, evaluate both the software and the model's behavior.
 
-## 51. What Should You Test?
+## 63. What Should You Test?
 
 ### Functional testing
 
@@ -2233,7 +2030,7 @@ Can a user access information they are not authorized to see?
 
 How long does the request take, and what does it cost?
 
-## 52. Common Risks and Mitigations
+## 64. Common Risks and Mitigations
 
 | Risk | Mitigation |
 |---|---|
@@ -2249,7 +2046,7 @@ Responsible AI also includes privacy, transparency, fairness, and human oversigh
 
 ---
 
-# 📖 Module 15: Important Terms to Remember
+# 📖 Module 16: Important Terms to Remember
 
 | Term | Beginner-friendly definition |
 |---|---|
@@ -2263,6 +2060,16 @@ Responsible AI also includes privacy, transparency, fairness, and human oversigh
 | Token | A unit of text processed by a model |
 | Context window | The amount of information a model can process in a request |
 | Embedding | A numerical representation of content |
+| Token ID | A numerical identifier assigned to a token |
+| Attention | A mechanism that lets a token use information from related tokens |
+| Transformer | The neural network architecture behind most modern LLMs |
+| Parameter | A learned numerical value inside a trained model |
+| Training | Adjusting a model's parameters so its predictions improve |
+| Loss | A measure of how wrong the model's predictions were |
+| Backpropagation | Computing the gradients used to update parameters |
+| Inference | Using a trained model to produce an output |
+| Next-token prediction | Estimating which token should come next |
+| Temperature | A setting that affects how varied generated output is |
 | Vector store | A system for storing and searching vectors |
 | Retriever | A component that finds relevant information |
 | RAG | Retrieval combined with generation |
@@ -2280,7 +2087,7 @@ Responsible AI also includes privacy, transparency, fairness, and human oversigh
 
 ---
 
-# 🎤 Module 16: Interview Preparation Questions
+# 🎤 Module 17: Interview Preparation Questions
 
 Use these questions to check your understanding.
 
@@ -2345,6 +2152,9 @@ Start with a prompt template and a model. Add structured output next. Then intro
 - [IBM watsonx Documentation](https://www.ibm.com/docs/en/watsonx)
 - [Pinecone Documentation](https://docs.pinecone.io/)
 - [Chroma Documentation](https://docs.trychroma.com/)
+- [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/)
+- [Attention Is All You Need (research paper)](https://arxiv.org/abs/1706.03762)
+- [OpenAI Platform Documentation](https://platform.openai.com/docs/)
 
 *Learning note: AI frameworks, package names, model capabilities, and APIs change frequently. Check the official documentation for the versions you use and verify examples in a working environment.*
 
@@ -2354,5 +2164,3 @@ Start with a prompt template and a model. Add structured output next. Then intro
   <b>⭐ If this guide helped you, give it a star and share it! ⭐</b><br/>
   <sub>Made with ❤️ for learners everywhere</sub>
 </p>
-
-
