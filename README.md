@@ -576,18 +576,34 @@ Projects help you apply theory to practical results and build a solid portfolio.
 
 ### 1) AI Learning Assistant
 
-**Use case:** A student asks, "What is a transformer?" or "Explain RAG in simple terms."
+**Use case:** A student asks questions like "What is a transformer?" or "Explain RAG in simple terms." The assistant explains topics using beginner-friendly language and course material.
 
 **Technology used and why:**
 - Python: core logic
 - LangChain: orchestration
 - Prompt templates: tutoring and explanation styles
 - OpenAI or Hugging Face: answer generation
-- Vector database: Chroma/FAISS for course notes and knowledge retrieval
+- Vector database (Chroma/FAISS): course notes and knowledge retrieval
+
+**Architecture:**
+
+```mermaid
+flowchart LR
+    A[Student] --> B[Web UI]
+    B --> C[Flask API]
+    C --> D[LangChain Chain]
+    D --> E[Vector DB]
+    D --> F[LLM]
+    E --> D
+    F --> G[Response]
+    G --> B
+```
+
+**Why this matters:** This project teaches the full flow of retrieval + prompting + LLM reasoning, which is one of the most common real-world AI patterns.
 
 ### 2) Document Question-Answering Assistant
 
-**Use case:** An employee uploads PDFs and asks questions based on internal policies or SOPs.
+**Use case:** An employee uploads policy PDFs or product manuals and asks natural-language questions such as "What is the refund policy for international customers?"
 
 **Technology used and why:**
 - LangChain document loaders
@@ -596,29 +612,87 @@ Projects help you apply theory to practical results and build a solid portfolio.
 - LLM for grounded answer generation
 - Flask API for file upload and Q&A
 
+**Architecture:**
+
+```mermaid
+flowchart LR
+    A[PDF / Docs] --> B[Document Loader]
+    B --> C[Text Splitter]
+    C --> D[Embeddings]
+    D --> E[Vector DB]
+    F[User Question] --> G[Flask API]
+    G --> H[Retriever]
+    H --> E
+    E --> I[Relevant Chunks]
+    I --> J[LLM + Prompt]
+    J --> K[Grounded Answer]
+    K --> G
+```
+
+**Why this matters:** This is a classic real-world RAG use case used in legal, HR, policy, research, and enterprise knowledge bases.
+
 ### 3) AI Customer Support Assistant
 
-**Use case:** A user asks, "Why is my order delayed?"
+**Use case:** A user asks, "Why is my order delayed?" or "Where can I find my return policy?" The assistant answers using company policies, metadata, and business tools.
 
 **Technology used and why:**
 - Flask API
 - LangChain tools for order lookup and support docs
 - Vector database for retrieval
 - Structured output parsing
+- LLM for customer-ready responses
+
+**Architecture:**
+
+```mermaid
+flowchart LR
+    A[Customer] --> B[Support App]
+    B --> C[Flask API]
+    C --> D[Intent Classifier]
+    D --> E[Order DB / CRM]
+    D --> F[Policy Vector Store]
+    E --> G[Tool Results]
+    F --> H[Relevant Docs]
+    G --> I[LLM Agent]
+    H --> I
+    I --> J[Support Response]
+    J --> B
+```
+
+**Why this matters:** This is one of the most common enterprise AI use cases because it reduces ticket resolution time and improves customer experience while still being grounded in company policies.
 
 ### 4) AI Travel Planner
 
-**Use case:** A traveler asks to plan a 3-day trip with budget and weather constraints.
+**Use case:** A traveler asks to plan a 3-day trip with hotel, food, and attraction recommendations within a budget and date range.
 
 **Technology used and why:**
 - Flask backend
 - LangChain orchestration
 - Weather and flight API tools
 - LLM for itinerary generation
+- Prompt engineering for structured travel plans
+
+**Architecture:**
+
+```mermaid
+flowchart LR
+    A[Traveler] --> B[Travel App]
+    B --> C[Flask API]
+    C --> D[Prompt + Constraints]
+    D --> E[Weather API]
+    D --> F[Flight/API Tools]
+    E --> G[LangChain Agent]
+    F --> G
+    G --> H[LLM]
+    H --> I[3-Day Itinerary]
+    I --> B
+```
+
+**Why this matters:** It demonstrates how tools, APIs, and prompt design work together in a real assistant. This is a perfect beginner-to-practical project because it is easy to understand and clearly maps to real product workflows.
 
 ### 5) AI Mobile Application Backend
 
-**Use case:** A mobile app needs a backend that can answer user questions or act as a virtual assistant for app support or onboarding.
+**Use case:** A mobile app needs a backend that can answer user questions, summarize application features, or act as a virtual assistant for onboarding and support.
 
 **Technology used and why:**
 - Flask REST API
@@ -626,20 +700,58 @@ Projects help you apply theory to practical results and build a solid portfolio.
 - LangChain + model APIs
 - SQLite/PostgreSQL for session storage
 - JWT or auth for secure access
+- Docker or cloud deployment for production
+
+**Architecture:**
+
+```mermaid
+flowchart LR
+    A[Mobile App] --> B[REST API]
+    B --> C[Auth Layer]
+    C --> D[LangChain Pipeline]
+    D --> E[Session DB]
+    D --> F[LLM API]
+    F --> G[AI Response]
+    G --> B
+    B --> A
+```
+
+**Why this matters:** This is the exact architecture used in real AI-powered mobile apps and SaaS products. It shows how AI is not just a notebook demo, but a backend service that can be integrated into production applications.
 
 ### 6) MCP-Powered Cross-Platform AI Assistant
 
-**Use case:** A mobile app, web dashboard, and desktop client all need the same AI assistant experience. The assistant can answer questions, search documents, call business tools, and act on user requests from a single backend.
+**Use case:** A mobile app, web dashboard, and desktop client all need the same AI assistant experience. The assistant can answer questions, search documents, call business tools, and perform tasks from a single backend.
 
 **Technology used and why:**
 - LangChain: prompts, agents, tool orchestration
 - MCP (Model Context Protocol): standard tool integration for LLM-powered systems
-- Vector DB (Chroma, FAISS, Pinecone): retrieve knowledge and policy docs
+- Vector DB (Chroma, FAISS, Pinecone): retrieval from knowledge docs and policies
 - LLM provider: OpenAI, Anthropic, Groq, Azure OpenAI
 - Flask/FastAPI: backend service layer
 - React Native or Flutter: mobile app frontend
 - Electron or web app: desktop/web cross-platform experience
 - PostgreSQL or Redis: session state, auth, caching, and tool access logs
+
+**Architecture:**
+
+```mermaid
+flowchart TD
+    A[Mobile App] --> B[Shared Backend API]
+    C[Web App] --> B
+    D[Desktop App] --> B
+    B --> E[Auth + Session Layer]
+    E --> F[LangChain Agent]
+    F --> G[MCP Tool Layer]
+    F --> H[Vector DB]
+    G --> I[External Tools and Services]
+    H --> J[Relevant Context]
+    J --> F
+    F --> K[LLM]
+    K --> L[Unified Response]
+    L --> A
+    L --> C
+    L --> D
+```
 
 **How it works:**
 1. The user opens a mobile app or web app and asks a question.
