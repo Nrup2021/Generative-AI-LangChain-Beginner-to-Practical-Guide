@@ -720,7 +720,7 @@ flowchart LR
 
 ### 6) MCP-Powered Cross-Platform AI Assistant
 
-**Use case:** A mobile app, web dashboard, and desktop client all need the same AI assistant experience. The assistant can answer questions, search documents, call business tools, and perform tasks fr[...]
+**Use case:** A mobile app, web dashboard, and desktop client all need the same AI assistant experience. The assistant can answer questions, search documents, call business tools, and perform tasks
 
 **Technology used and why:**
 - LangChain: prompts, agents, tool orchestration
