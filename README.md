@@ -67,7 +67,7 @@ We will progress from basic concepts to building AI-powered applications using P
 ## 🗺️ Learning Roadmap
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["AI Fundamentals"] --> B["Generative AI and LLMs"]
     B --> C["How LLMs Work Internally"]
     C --> D["Prompt Engineering"]
