@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="380" viewBox="0 0 980 380" role="img" aria-labelledby="title desc">
+  <title id="title">AI Learning Assistant architecture</title>
+  <desc id="desc">Student and web UI connect to a Flask API, which uses a LangChain chain with a vector database and LLM to return a response.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#2f6fed"/>
+    </marker>
+    <style>
+      .box { fill: #eef4ff; stroke: #2f6fed; stroke-width: 2; rx: 16; ry: 16; }
+      .db { fill: #eafaf1; stroke: #1b9e5a; stroke-width: 2; }
+      .llm { fill: #fff3e8; stroke: #f59e0b; stroke-width: 2; }
+      .label { font: 600 18px 'Segoe UI', Arial, sans-serif; fill: #1f2937; }
+      .small { font: 500 15px 'Segoe UI', Arial, sans-serif; fill: #374151; }
+      .arrow { stroke: #2f6fed; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect x="40" y="130" width="120" height="80" class="box"/>
+  <text x="100" y="175" text-anchor="middle" class="label">Student</text>
+
+  <rect x="220" y="110" width="150" height="120" class="box"/>
+  <text x="295" y="165" text-anchor="middle" class="label">Web UI</text>
+
+  <rect x="430" y="110" width="150" height="120" class="box"/>
+  <text x="505" y="165" text-anchor="middle" class="label">Flask API</text>
+
+  <rect x="650" y="110" width="170" height="120" class="box"/>
+  <text x="735" y="165" text-anchor="middle" class="label">LangChain</text>
+  <text x="735" y="188" text-anchor="middle" class="small">Chain</text>
+
+  <rect x="650" y="260" width="170" height="80" class="db"/>
+  <text x="735" y="305" text-anchor="middle" class="label">Vector DB</text>
+
+  <rect x="830" y="110" width="120" height="120" class="llm"/>
+  <text x="890" y="165" text-anchor="middle" class="label">LLM</text>
+
+  <rect x="870" y="260" width="80" height="70" class="box"/>
+  <text x="910" y="300" text-anchor="middle" class="label">Response</text>
+
+  <path d="M160 170 H220" class="arrow"/>
+  <path d="M370 170 H430" class="arrow"/>
+  <path d="M580 170 H650" class="arrow"/>
+  <path d="M820 170 H830" class="arrow"/>
+  <path d="M735 230 V260" class="arrow"/>
+  <path d="M820 300 Q860 300 870 300" class="arrow"/>
+  <path d="M735 340 H900 V330" class="arrow"/>
+  <path d="M650 300 H590 300 V205 H650" class="arrow"/>
+</svg>
