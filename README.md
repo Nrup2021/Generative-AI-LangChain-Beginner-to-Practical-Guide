@@ -86,7 +86,7 @@ Think of this roadmap as learning to build a house: first, understand the materi
 > **The big picture** — how every piece in this guide fits together:
 
 ```mermaid
-flowchart LR
+flowchart TD
     U(["👤 User"]) --> API["🌐 Flask API"]
     API --> P["✍️ Prompt Template"]
     P --> M["🧠 LLM"]
