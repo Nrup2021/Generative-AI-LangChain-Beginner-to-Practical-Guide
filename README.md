@@ -40,24 +40,25 @@ We will progress from basic concepts to building AI-powered applications using P
 
 ## 📑 Table of Contents
 
-[🧩 Module 1: Foundations of Artificial Intelligence](#module-1-foundations-of-artificial-intelligence) <br>
-[🔬 Module 2: How Large Language Models Actually Work](#module-2-how-large-language-models-actually-work) <br>
-[✍️ Module 3: Prompt Engineering](#module-3-prompt-engineering) <br>
-[🔗 Module 4: Introduction to LangChain](#module-4-introduction-to-langchain) <br>
-[⚙️ Module 5: Chains and LangChain Expression Language (LCEL)](#module-5-chains-and-langchain-expression-language-lcel) <br>
-[🧾 Module 6: Output Parsers and Structured Responses](#module-6-output-parsers-and-structured-responses) <br>
-[💬 Module 7: Conversation History and Memory](#module-7-conversation-history-and-memory) <br>
-[📄 Module 8: Documents, Embeddings, and Vector Databases](#module-8-documents-embeddings-and-vector-databases) <br>
-[🔍 Module 9: Retrieval-Augmented Generation (RAG)](#module-9-retrieval-augmented-generation-rag) <br>
-[🛠️ Module 10: Tools and AI Agents](#module-10-tools-and-ai-agents) <br>
-[🧠 Module 11: AI Models and Model Selection](#module-11-ai-models-and-model-selection) <br>
-[🌐 Module 12: Building a Generative AI Application with Python and Flask](#module-12-building-a-generative-ai-application-with-python-and-flask) <br>
-[🧱 Module 13: Understanding Fine-Tuning and Model Adaptation](#module-13-understanding-fine-tuning-and-model-adaptation) <br>
-[🚀 Module 14: Real-World Project Ideas](#module-14-real-world-project-ideas) <br>
-[🧪 Module 15: Testing, Evaluation, and Responsible AI](#module-15-testing-evaluation-and-responsible-ai) <br>
-[📖 Module 16: Important Terms to Remember](#module-16-important-terms-to-remember) <br>
-[🎤 Module 17: Interview Preparation Questions](#module-17-interview-preparation-questions) <br>
-[🏁 Final Summary](#final-summary) <br>
+| # | Module |
+|---|---|
+| 1 | [🧩 Module 1: Foundations of Artificial Intelligence](#module-1-foundations-of-artificial-intelligence) |
+| 2 | [✍️ Module 2: Prompt Engineering](#module-2-prompt-engineering) |
+| 3 | [🔗 Module 3: Introduction to LangChain](#module-3-introduction-to-langchain) |
+| 4 | [⚙️ Module 4: Chains and LangChain Expression Language (LCEL)](#module-4-chains-and-langchain-expression-language-lcel) |
+| 5 | [🧾 Module 5: Output Parsers and Structured Responses](#module-5-output-parsers-and-structured-responses) |
+| 6 | [💬 Module 6: Conversation History and Memory](#module-6-conversation-history-and-memory) |
+| 7 | [📄 Module 7: Documents, Embeddings, and Vector Databases](#module-7-documents-embeddings-and-vector-databases) |
+| 8 | [🔍 Module 8: Retrieval-Augmented Generation (RAG)](#module-8-retrieval-augmented-generation-rag) |
+| 9 | [🛠️ Module 9: Tools and AI Agents](#module-9-tools-and-ai-agents) |
+| 10 | [🧠 Module 10: AI Models and Model Selection](#module-10-ai-models-and-model-selection) |
+| 11 | [🌐 Module 11: Building a Generative AI Application with Python and Flask](#module-11-building-a-generative-ai-application-with-python-and-flask) |
+| 12 | [🧱 Module 12: Understanding Fine-Tuning and Model Adaptation](#module-12-understanding-fine-tuning-and-model-adaptation) |
+| 13 | [🚀 Module 13: Real-World Project Ideas](#module-13-real-world-project-ideas) |
+| 14 | [🧪 Module 14: Testing, Evaluation, and Responsible AI](#module-14-testing-evaluation-and-responsible-ai) |
+| 15 | [📖 Module 15: Important Terms to Remember](#module-15-important-terms-to-remember) |
+| 16 | [🎤 Module 16: Interview Preparation Questions](#module-16-interview-preparation-questions) |
+| 17 | [🏁 Final Summary](#final-summary) |
 
 ---
 
