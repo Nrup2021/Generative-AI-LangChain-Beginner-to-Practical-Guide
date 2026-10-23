@@ -16,7 +16,7 @@
 <a id="about-this-guide"></a>
 ## 📚 About This Guide
 
-Welcome! This guide explains Generative AI and LangChain from the ground up. It is designed for beginners who want to understand not only what these technologies are, but also how they work, why they are useful, and where they are used in real-world applications.
+Welcome! This guide explains Generative AI and LangChain from the ground up. It is designed for beginners who want to understand not only what these technologies are, but also how they work, why they are useful, and how to apply them in real projects.
 
 You do not need prior knowledge of Artificial Intelligence or Large Language Models to begin.
 
@@ -66,36 +66,74 @@ We will progress from basic concepts to building AI-powered applications using P
 <a id="learning-roadmap"></a>
 ## 🗺️ Learning Roadmap
 
-```mermaid
-flowchart TD
-    A["AI Fundamentals"] --> B["Generative AI and LLMs"]
-    B --> C["How LLMs Work Internally"]
-    C --> D["Prompt Engineering"]
-    D --> E["LangChain Fundamentals"]
-    E --> F["Prompts and Output Parsers"]
-    F --> G["Chains and LCEL"]
-    G --> H["Conversation History"]
-    H --> I["Embeddings and Vector Stores"]
-    I --> J["RAG Applications"]
-    J --> K["Tools and AI Agents"]
-    K --> L["Python and Flask Integration"]
-    L --> M["Testing, Evaluation and Deployment"]
+Think of this roadmap as learning to build a house: first understand the materials, then learn how the parts fit together, and finally build a complete working application.
+
+### Step-by-step learning path
+
+1. AI Fundamentals
+2. Generative AI and LLMs
+3. How LLMs work internally
+4. Prompt Engineering
+5. LangChain Fundamentals
+6. Prompts and Output Parsers
+7. Chains and LCEL
+8. Conversation History and Memory
+9. Embeddings and Vector Stores
+10. RAG Applications
+11. Tools and AI Agents
+12. Python and Flask Integration
+13. Testing, Evaluation, and Deployment
+
+### Quick view of the full journey
+
+```text
+AI Basics
+   ↓
+Generative AI + LLMs
+   ↓
+LLM Internals
+   ↓
+Prompt Engineering
+   ↓
+LangChain Basics
+   ↓
+Prompt Templates + Output Parsers
+   ↓
+Chains + LCEL
+   ↓
+Memory + Conversation History
+   ↓
+Embeddings + Vector Stores
+   ↓
+RAG
+   ↓
+Tools + Agents
+   ↓
+Python + Flask App
+   ↓
+Testing + Deployment
 ```
 
-Think of this roadmap as learning to build a house: first, understand the materials; next, learn how the components fit together; finally, build a complete application.
-
 > [!TIP]
-> The big picture: how every piece in this guide fits together.
+> The big picture: every topic in this guide connects to building real AI applications.
 
-```mermaid
-flowchart TD
-    U["User"] --> API["Flask API"]
-    API --> P["Prompt Template"]
-    P --> M["LLM"]
-    R["Vector Store"] -->|retrieved context| P
-    M --> T["Tools / Agent"]
-    M --> O["Output Parser"]
-    O --> API --> U
+### How the main pieces fit together
+
+```text
+User
+  ↓
+Flask API
+  ↓
+Prompt Template
+  ↓
+LLM
+  ├──> Vector Store / Retrieved Context
+  ├──> Tools / Agent
+  └──> Output Parser
+          ↓
+        API Response
+          ↓
+        User
 ```
 
 ---
